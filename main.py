@@ -14,7 +14,7 @@ def convert_pdf_to_txt(path):
     retstr = StringIO()
     codec = 'utf-8'
     laparams = LAParams()
-    device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+    device = TextConverter(rsrcmgr, retstr, laparams=laparams)
     fp = open(path, 'rb')
     interpreter = PDFPageInterpreter(rsrcmgr, device)
     password = ""
@@ -43,10 +43,10 @@ async def create_item(url: str):
     with open("python.pdf","wb") as pdf:
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:
-               pdf.write(chunk) 
+                pdf.write(chunk) 
     resume_text = convert_pdf_to_txt('python.pdf')
-    results = {'error':'0101'}
-    output_dir = 'results'
+    output_dir = 'results1'
+    results ={}
     nlp = spacy.load(output_dir)
     doc_to_test=nlp(resume_text)
     d={}
